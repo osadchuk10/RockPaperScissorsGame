@@ -1,0 +1,113 @@
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 20px;
+  }
+  div {
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+  button {
+    font-size: 16px;
+    margin: 5px;
+    padding: 10px;
+    cursor: pointer;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  th, td {
+    padding: 15px;
+    border: 1px solid #ddd;
+    text-align: center;
+  }
+  th {
+    background-color: #f2f2f2;
+  }
+  h2 {
+    font-size: 18px;
+    margin-bottom: 5px;
+  }
+  p {
+    font-size: 14px;
+    margin: 5px;
+  }
+</style>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rock Paper Scissors</title>
+</head>
+<body>
+  <div>Welcome to Rock Paper Scissors game BITCH</div>
+  <button onclick="game('rock');">Rock</button>
+  <button onclick="game('paper');">Paper</button>
+  <button onclick="game('scissors');">Scissors</button>
+  <table>
+    <tr>
+      <td>
+        <h2>Computer won</h2>
+        <p>(it's obvious)</p>
+      </td>
+      <td>
+        <h2>Draw</h2>
+        <p>(it happans even with computers)</p>
+      </td>
+      <td>
+        <h2>Human Wins</h2>
+        <p>(a ridiculous misunderstanding)</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <h2 id="compWinScore">0</h2>
+      </td>
+      <td>
+        <h2 id="drawScore">0</h2>
+      </td>
+      <td>
+        <h2 id="humanWinScore">0</h2>
+      </td>
+    </tr>
+  </table>
+  <script>
+    let draw = 0;
+    let compWin = 0;
+    let humanWin = 0;
+    function game(param) {
+      let computerChoose = Math.random();
+      if (computerChoose >= 0 && computerChoose < 1 / 3) {
+        computerChoose = "rock";
+      } else if (computerChoose >= 1 / 3 && computerChoose < 2 / 3) {
+        computerChoose = "paper";
+      } else if (computerChoose >= 2 / 3 && computerChoose < 1) {
+        computerChoose = "scissors";
+      }
+      console.log(computerChoose)
+      const youLost = `You lost stupid leather piece of shit I chose "${computerChoose.toUpperCase()}" and you chose "${param.toUpperCase()}". Learn the rules. "${computerChoose.toUpperCase()}" always beats "${param.toUpperCase()}". Computers win WOHOWOWHO`;
+      const youWon = `You lucky bastard I chose "${computerChoose.toUpperCase()}" and you chose "${param.toUpperCase()}". In this time you won but in the next time I'll destroy you. I know how you think bitch`;
+      if (param === computerChoose) {
+        alert(`You choose "${param.toUpperCase()}" I also choose the same. It's a draw. Oh, almost forgot. HUMANS SUCK hahahahahah`);
+        draw++;
+      } else {
+        alert((param === "rock" && computerChoose === "paper") ||
+          (param === "paper" && computerChoose === "scissors") ||
+          (param === "scissors" && computerChoose === "rock") ? (compWin++, youLost) : (humanWin++, youWon));
+      }
+      document.getElementById('drawScore').innerText = draw;
+      document.getElementById('compWinScore').innerText = compWin;
+      document.getElementById('humanWinScore').innerText = humanWin;
+      console.log(compWin);
+      console.log(humanWin);
+      console.log(draw);
+    }
+
+  </script>
+</body>
+
+</html>
